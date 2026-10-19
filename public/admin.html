@@ -1,0 +1,233 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin | Sea of Exim</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a href="/" class="side-logo">
+        <img src="logo.svg" alt="Sea of Exim">
+      </a>
+      <p class="side-label">WORKSPACE</p>
+      <button class="side-link active" data-tab="overview">▦ &nbsp; Overview</button>
+      <button class="side-link" data-tab="content">✎ &nbsp; Website content</button>
+      <button class="side-link" data-tab="products">◇ &nbsp; Products</button>
+      <button class="side-link" data-tab="messages">✉ &nbsp; Enquiries <span id="messageCount" class="count">0</span></button>
+      <div class="side-bottom">
+        <a href="/" target="_blank" rel="noopener">↗ View website</a>
+        <button id="logoutBtn" hidden>Log out ↗</button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <span class="kicker">SEA OF EXIM / ADMIN</span>
+          <h1 id="pageTitle">Dashboard overview</h1>
+        </div>
+        <div class="user-pill">
+          <span class="avatar">A</span>
+          <div>
+            <b id="adminName">Administrator</b>
+            <small>Website manager</small>
+          </div>
+        </div>
+      </header>
+      <div id="notice" class="notice" role="status"></div>
+      <section id="loginView" class="login-wrap">
+        <div class="login-card">
+          <img src="logo.svg" alt="Sea of Exim">
+          <span class="kicker">SECURE ADMIN ACCESS</span>
+          <h2>Welcome back.</h2>
+          <p>Sign in to update your website content and review customer enquiries.</p>
+          <form id="loginForm">
+            <label>Username
+              <input name="username" autocomplete="username" required value="admin">
+            </label>
+            <label>Password
+              <input name="password" type="password" autocomplete="current-password" required placeholder="Your admin password">
+            </label>
+            <button class="primary-btn" type="submit">Sign in to dashboard →</button>
+          </form>
+          <p class="login-help">Admin credentials are configured in your local <code>.env</code> file.</p>
+        </div>
+      </section>
+      <div id="dashboard" hidden>
+        <section class="panel-view active" id="tab-overview">
+          <div class="welcome">
+            <div>
+              <span class="kicker">YOUR BUSINESS AT A GLANCE</span>
+              <h2>Good work starts with a clear view.</h2>
+              <p>Manage your public website from one simple workspace.</p>
+            </div>
+            <span class="welcome-icon">↗</span>
+          </div>
+          <div class="stats">
+            <article>
+              <span>Product categories</span>
+              <b id="statProducts">0</b>
+              <small>Shown on the website</small>
+            </article>
+            <article>
+              <span>Services</span>
+              <b id="statServices">0</b>
+              <small>Available to visitors</small>
+            </article>
+            <article>
+              <span>Total enquiries</span>
+              <b id="statMessages">0</b>
+              <small>Received via contact form</small>
+            </article>
+            <article>
+              <span>Unread enquiries</span>
+              <b id="statUnread">0</b>
+              <small>Need your attention</small>
+            </article>
+          </div>
+          <div class="two-col">
+            <article class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Quick actions</h3>
+                  <p>Common website management tasks</p>
+                </div>
+              </div>
+              <button class="action-row" data-go="content">
+                <span>✎</span>
+                <div>
+                  <b>Edit website content</b>
+                  <small>Change the headline, contact details and company description.</small>
+                </div>
+                <strong>→</strong>
+              </button>
+              <button class="action-row" data-go="products">
+                <span>◇</span>
+                <div>
+                  <b>Manage products</b>
+                  <small>Add, update or remove product categories.</small>
+                </div>
+                <strong>→</strong>
+              </button>
+              <button class="action-row" data-go="messages">
+                <span>✉</span>
+                <div>
+                  <b>Review enquiries</b>
+                  <small>Read customer messages submitted from the site.</small>
+                </div>
+                <strong>→</strong>
+              </button>
+            </article>
+            <article class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Website checklist</h3>
+                  <p>Before publishing your website</p>
+                </div>
+              </div>
+              <ul class="checklist">
+                <li><span>✓</span>Update company contact details</li>
+                <li><span>✓</span>Review product categories and images</li>
+                <li><span>○</span>Set a strong production admin password</li>
+                <li><span>○</span>Configure HTTPS and production hosting</li>
+                <li><span>○</span>Set up business email delivery</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <section class="panel-view" id="tab-content">
+          <div class="panel-card">
+            <div class="card-head">
+              <div>
+                <h2>Website content</h2>
+                <p>Changes are saved to the website data and shown on the public site.</p>
+              </div>
+            </div>
+            <form id="settingsForm" class="edit-grid">
+              <label>Company name
+                <input name="companyName" required maxlength="180">
+              </label>
+              <label>Tagline
+                <input name="tagline" maxlength="180">
+              </label>
+              <label>Email address
+                <input name="email" type="email" maxlength="180">
+              </label>
+              <label>Phone number
+                <input name="phone" maxlength="180">
+              </label>
+              <label class="wide">Business address
+                <input name="address" maxlength="180">
+              </label>
+              <label class="wide">Hero headline
+                <textarea name="heroTitle" rows="2" maxlength="180"></textarea>
+              </label>
+              <label class="wide">Hero supporting text
+                <textarea name="heroText" rows="2" maxlength="500"></textarea>
+              </label>
+              <label class="wide">About / company description
+                <textarea name="description" rows="4" maxlength="500"></textarea>
+              </label>
+              <div class="wide form-actions">
+                <button class="primary-btn" type="submit">Save website content →</button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section class="panel-view" id="tab-products">
+          <div class="panel-card">
+            <div class="card-head">
+              <div>
+                <h2>Product categories</h2>
+                <p>Manage the product cards displayed on the public website.</p>
+              </div>
+              <button id="addProductBtn" class="primary-btn">+ Add product</button>
+            </div>
+            <div id="productEditor" hidden class="product-editor">
+              <h3 id="productEditorTitle">Add a product</h3>
+              <form id="productForm" class="edit-grid">
+                <input type="hidden" name="id">
+                <label>Product name
+                  <input name="name" required maxlength="120">
+                </label>
+                <label>Category
+                  <input name="category" required maxlength="80">
+                </label>
+                <label class="wide">Description
+                  <textarea name="description" required rows="3" maxlength="500"></textarea>
+                </label>
+                <label class="wide">Image URL (https://)
+                  <input name="image" type="url" placeholder="https://example.com/image.jpg">
+                </label>
+                <div class="wide form-actions">
+                  <button class="primary-btn" type="submit">Save product</button>
+                  <button type="button" id="cancelProduct" class="secondary-btn">Cancel</button>
+                </div>
+              </form>
+            </div>
+            <div id="productsTable" class="table-wrap"></div>
+          </div>
+        </section>
+        <section class="panel-view" id="tab-messages">
+          <div class="panel-card">
+            <div class="card-head">
+              <div>
+                <h2>Customer enquiries</h2>
+                <p>Messages sent using the website contact form.</p>
+              </div>
+              <button id="refreshMessages" class="secondary-btn">↻ Refresh</button>
+            </div>
+            <div id="messagesList" class="messages-list"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="admin.js" defer></script>
+</body>
+</html>
